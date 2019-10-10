@@ -1,0 +1,13 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_circle"/>
+    <item android:drawable="@drawable/ic_circle_red"
+        android:top="15dp"
+        android:bottom="15dp"
+        android:start="15dp"
+        android:end="15dp"/>
+    <item android:drawable="@drawable/ic_restaurant_grey_48dp"
+        android:start="10dp"
+        android:end="16dp"
+        android:top="10dp"
+        android:bottom="10dp"/>
+</layer-list>

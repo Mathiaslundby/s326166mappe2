@@ -1,7 +1,7 @@
 package com.example.s326166mappe2;
 
 public class Restaurant {
-    private int _ID;
+    private long _ID;
     private String name;
     private String address;
     private String tlf;
@@ -25,11 +25,11 @@ public class Restaurant {
         this.type = type;
     }
 
-    public int get_ID() {
+    public long get_ID() {
         return _ID;
     }
 
-    public void set_ID(int _ID) {
+    public void set_ID(long _ID) {
         this._ID = _ID;
     }
 

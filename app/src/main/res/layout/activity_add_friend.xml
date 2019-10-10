@@ -1,53 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddRestaurantActivity">
+    tools:context=".AddFriendActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/rest_toolbar"
+        android:id="@+id/friend_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"/>
 
     <TextView
-        style="@style/tv_style"
-        android:text="Navn"/>
+        android:text="Navn"
+        style="@style/tv_style"/>
     <EditText
-        android:id="@+id/rest_name"
+        android:id="@+id/friend_name"
         style="@style/et_style"/>
 
     <TextView
-        style="@style/tv_style"
-        android:text="Addresse"/>
+        android:text="Tlf"
+        style="@style/tv_style"/>
     <EditText
-        android:id="@+id/rest_address"
-        style="@style/et_style"/>
-
-    <TextView
-        style="@style/tv_style"
-        android:text="Telefon"/>
-    <EditText
-        android:id="@+id/rest_tlf"
-        style="@style/et_style"/>
-
-    <TextView
-        style="@style/tv_style"
-        android:text="Type"/>
-    <EditText
-        android:id="@+id/rest_type"
+        android:id="@+id/friend_tlf"
         style="@style/et_style"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add restaurant"
         android:layout_margin="20dp"
-        android:onClick="addRestaurant"/>
+        android:text="Legg til venn"
+        android:onClick="addFriend"/>
+
+
 
 </LinearLayout>

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class AddRestaurant extends AppCompatActivity {
+public class AddRestaurantActivity extends AppCompatActivity {
 
     Toolbar tb;
     DbHandler db;

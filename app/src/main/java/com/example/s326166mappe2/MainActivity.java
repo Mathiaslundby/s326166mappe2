@@ -23,6 +23,16 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView)findViewById(R.id.text);
         tb = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tb);
+
+        RestaurantListFragment restaurantListFragment = new RestaurantListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, restaurantListFragment).commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RestaurantListFragment restaurantListFragment = new RestaurantListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, restaurantListFragment).commit();
     }
 
     @Override
@@ -50,12 +60,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addRestaurant() {
-        Intent i = new Intent(this, AddRestaurant.class);
+        Intent i = new Intent(this, AddRestaurantActivity.class);
         startActivity(i);
     }
 
     public void addFriend() {
-        tv.setText("Friend");
+        Intent i = new Intent(this, AddFriendActivity.class);
+        startActivity(i);
     }
 
 }
