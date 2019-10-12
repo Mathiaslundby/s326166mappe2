@@ -25,6 +25,8 @@ public class DbHandler extends SQLiteOpenHelper {
     static String FRIEND_NAME = "Name";
     static String FRIEND_PH_NO = "PhoneNumber";
 
+
+
     static int DATABASE_VERSION = 1;
     static String DATABASE_NAME = "Restaurant_visits";
 
@@ -37,12 +39,10 @@ public class DbHandler extends SQLiteOpenHelper {
         String CREATE_REST_TABLE = "CREATE TABLE " + TABLE_RESTAURANTS + "(" + REST_ID +
                 " INTEGER PRIMARY KEY, " + REST_NAME + " TEXT," + REST_ADDRESS + " TEXT," +
                 REST_PH_NO + " TEXT," + REST_TYPE + " TEXT)";
-
         sqLiteDatabase.execSQL(CREATE_REST_TABLE);
 
         String CREATE_FRIEND_TABLE = "CREATE TABLE " + TABLE_FRIENDS + "(" + FRIEND_ID +
                 " INTEGER PRIMARY KEY, " + FRIEND_NAME + " TEXT," + FRIEND_PH_NO  + " TEXT)";
-
         sqLiteDatabase.execSQL(CREATE_FRIEND_TABLE);
     }
 

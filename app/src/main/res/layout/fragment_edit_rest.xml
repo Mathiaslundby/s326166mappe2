@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/fragment_style"
+    tools:context=".EditRestFragment">
+
+    <TextView
+        android:id="@+id/tv_rest_name"
+        style="@style/tv_style"
+        android:text="Nytt navn"/>
+    <EditText
+        android:id="@+id/et_rest_name"
+        style="@style/et_style"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/tv_rest_address"
+        style="@style/tv_style"
+        android:text="Ny adresse"/>
+    <EditText
+        android:id="@+id/et_rest_address"
+        style="@style/et_style"
+        android:layout_marginTop="50dp"/>
+
+</LinearLayout>

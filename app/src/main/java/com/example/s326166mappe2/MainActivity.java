@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar tb;
     TextView tv;
+    RestaurantListFragment rListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +25,13 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView)findViewById(R.id.text);
         tb = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tb);
-
-        RestaurantListFragment restaurantListFragment = new RestaurantListFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.container, restaurantListFragment).commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        RestaurantListFragment restaurantListFragment = new RestaurantListFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.container, restaurantListFragment).commit();
+        rListFragment = new RestaurantListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, rListFragment).commit();
     }
 
     @Override
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

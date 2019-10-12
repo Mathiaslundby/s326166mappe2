@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RestaurantListFragment">
+    tools:context=".RestaurantListFragment"
+    style="@style/fragment_style">
 
     <ListView
-        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rest_listView"/>
+        android:id="@+id/rest_listView">
+    </ListView>
+
 
 </FrameLayout>
