@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,21 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Friends.COLUMN_NAME, friend.getName());
         values.put(DbContract.Friends.COLUMN_PH_NO, friend.getPh_no());
         db.insert(DbContract.Friends.TABLE_NAME, null, values);
+    }
+
+    public Friend getFriend(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(DbContract.Friends.SELECT_ONE(id), null);
+        if(cursor.moveToFirst()) {
+            Friend f = new Friend();
+            f.set_ID(cursor.getLong(0));
+            f.setName(cursor.getString(1));
+            f.setPh_no(cursor.getString(2));
+            cursor.close();
+            return f;
+        }
+
+        return null;
     }
 }
 

@@ -27,14 +27,12 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*
-        dbHelper = new DbHelper(this);
-        Friend f = new Friend("Yoink", "12345678");
-        dbHelper.addFriend(f);
-        dbHelper.addFriend(f);
-        dbHelper.addFriend(f);
-        dbHelper.addFriend(f);
 
+        dbHelper = new DbHelper(this);
+
+        Friend f = new Friend("Jarsveen", "911");
+        /*
+        dbHelper.addFriend(f);
         Restaurant r = new Restaurant("Max", "Stortinget", "87654321", "Burger");
         dbHelper.addRestaurant(r);
         dbHelper.addRestaurant(r);
@@ -91,6 +89,13 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
 
     private void editFriend(Bundle bundle) {
         long id = bundle.getLong(FragmentActionListener.ACTION_ID);
-        
+        Friend friend = dbHelper.getFriend(id);
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        EditFriendFragment editFriendFragment = new EditFriendFragment(friend);
+
+        fragmentTransaction.replace(R.id.fragmentContainer, editFriendFragment);
+        fragmentTransaction.addToBackStack("edit");
+        fragmentTransaction.commit();
     }
 }

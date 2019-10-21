@@ -44,5 +44,9 @@ public final class DbContract {
 
         public static final String SELECT_ALL =
                 "SELECT * FROM " + TABLE_NAME;
+
+        public static String SELECT_ONE(long id) {
+            return "SELECT * FROM " + TABLE_NAME + " WHERE _id = " + id;
+        }
     }
 }
