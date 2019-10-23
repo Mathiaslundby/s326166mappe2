@@ -2,15 +2,14 @@ package com.example.s326166mappe2;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 
 /**
@@ -23,10 +22,11 @@ public class AddFriendFragment extends Fragment {
     EditText etNumber;
     Button btnAdd;
 
+    DbHelper dbHelper;
+
     public AddFriendFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,11 +40,18 @@ public class AddFriendFragment extends Fragment {
         etName = (EditText)view.findViewById(R.id.add_friend_name);
         etNumber = (EditText)view.findViewById(R.id.add_friend_number);
         btnAdd = (Button)view.findViewById(R.id.btn_add_friend);
+        dbHelper = new DbHelper(getContext());
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Added friend", Toast.LENGTH_SHORT).show();
+                Friend friend = new Friend();
+                friend.setName(etName.getText().toString());
+                friend.setPh_no(etNumber.getText().toString());
+                dbHelper.addFriend(friend);
+
+                Toast.makeText(getContext(), "Friend added!", Toast.LENGTH_SHORT).show();
+                getActivity().onBackPressed();
             }
         });
     }

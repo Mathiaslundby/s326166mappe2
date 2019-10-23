@@ -45,6 +45,13 @@ public final class DbContract {
         public static final String SELECT_ALL =
                 "SELECT * FROM " + TABLE_NAME;
 
+        /*USE METHOD IN DbHelper INSTEAD
+        public static String INSERT(Friend friend) {
+            return "INSERT INTO " + TABLE_NAME +" (" + COLUMN_NAME + ", " + COLUMN_PH_NO + ") " +
+                    "VALUES (" + friend.getName() + ", " + friend.getPh_no() + ");";
+        }
+        */
+
         public static String SELECT_ONE(long id) {
             return "SELECT * FROM " + TABLE_NAME + " WHERE _id = " + id;
         }

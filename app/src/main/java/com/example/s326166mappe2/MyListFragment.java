@@ -71,7 +71,7 @@ public class MyListFragment extends Fragment {
                 if(fragmentActionListener != null) {
                     Bundle bundle = new Bundle();
                     bundle.putInt(FragmentActionListener.ACTION_KEY, FragmentActionListener.ACTION_ADD);
-                    bundle.putInt(FragmentActionListener.KEY_ADD, FragmentActionListener.ACTION_ADD_FRIEND);
+                    bundle.putInt(FragmentActionListener.KEY_ADD, listType);   // Gives 1 for friends and 2 for restaurant
                     fragmentActionListener.onAction(bundle);
                 }
             }

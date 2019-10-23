@@ -84,11 +84,14 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
 
     private void addToList(Bundle bundle) {
         int item = bundle.getInt(FragmentActionListener.KEY_ADD);
-        Toast.makeText(this, "Clicked " + item, Toast.LENGTH_SHORT).show();
 
         switch (item) {
-            case FragmentActionListener.ACTION_ADD_FRIEND:
+            case FragmentActionListener.FRIENDS:
                 addFriend();
+                break;
+
+            case FragmentActionListener.RESTS:
+                addRestaurant();
                 break;
         }
     }
@@ -101,10 +104,10 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         fragmentTransaction.commit();
     }
 
-    private void addRestuarant() {
+    private void addRestaurant() {
         fragmentTransaction = fragmentManager.beginTransaction();
-        AddFriendFragment addFriendFragment = new AddFriendFragment();
-        fragmentTransaction.replace(R.id.fragmentContainer, addFriendFragment);
+        AddRestFragment addRestFragment = new AddRestFragment();
+        fragmentTransaction.replace(R.id.fragmentContainer, addRestFragment);
         fragmentTransaction.addToBackStack("add");
         fragmentTransaction.commit();
     }
