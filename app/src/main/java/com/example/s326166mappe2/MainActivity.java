@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         fragmentManager = getSupportFragmentManager();
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        addListFragment(FRIENDS);
     }
 
     @Override
@@ -65,24 +66,59 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
                 list = FragmentActionListener.RESTS;
                 break;
         }
+        addListFragment(list);
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void addListFragment(int listType) {
 
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        MyListFragment lfFragment = new MyListFragment(list);
+        MyListFragment lfFragment = new MyListFragment(listType);
         lfFragment.setFragmentActionListener(this);
 
         fragmentTransaction.replace(R.id.fragmentContainer, lfFragment);
         fragmentTransaction.addToBackStack("lists");
         fragmentTransaction.commit();
-
-        return super.onOptionsItemSelected(item);
     }
+
+    private void addToList(Bundle bundle) {
+        int item = bundle.getInt(FragmentActionListener.KEY_ADD);
+        Toast.makeText(this, "Clicked " + item, Toast.LENGTH_SHORT).show();
+
+        switch (item) {
+            case FragmentActionListener.ACTION_ADD_FRIEND:
+                addFriend();
+                break;
+        }
+    }
+
+    private void addFriend() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        AddFriendFragment addFriendFragment = new AddFriendFragment();
+        fragmentTransaction.replace(R.id.fragmentContainer, addFriendFragment);
+        fragmentTransaction.addToBackStack("add");
+        fragmentTransaction.commit();
+    }
+
+    private void addRestuarant() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        AddFriendFragment addFriendFragment = new AddFriendFragment();
+        fragmentTransaction.replace(R.id.fragmentContainer, addFriendFragment);
+        fragmentTransaction.addToBackStack("add");
+        fragmentTransaction.commit();
+    }
+
     @Override
     public void onAction(Bundle bundle) {
         int action = bundle.getInt(FragmentActionListener.ACTION_KEY);
         switch (action) {
             case FragmentActionListener.ACTION_EDIT_FRIEND:
                 editFriend(bundle);
+                break;
+
+            case FragmentActionListener.ACTION_ADD:
+                addToList(bundle);
                 break;
         }
     }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class MyListFragment extends Fragment {
 
     View view;
+    ImageView btnAdd;
     ArrayList<DataModel> data;
     ListView listView;
     DbHelper dbHelper;
@@ -42,7 +44,7 @@ public class MyListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_list_friends, container, false);
+        view = inflater.inflate(R.layout.fragment_list, container, false);
         initUI();
         return view;
     }
@@ -62,6 +64,19 @@ public class MyListFragment extends Fragment {
                 break;
         }
 
+        btnAdd = (ImageView)view.findViewById(R.id.list_add);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fragmentActionListener != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(FragmentActionListener.ACTION_KEY, FragmentActionListener.ACTION_ADD);
+                    bundle.putInt(FragmentActionListener.KEY_ADD, FragmentActionListener.ACTION_ADD_FRIEND);
+                    fragmentActionListener.onAction(bundle);
+                }
+            }
+        });
+
         adapter = new CustomAdapter(data, getContext(), listType);
         listView.setAdapter(adapter);
 
@@ -69,7 +84,6 @@ public class MyListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(fragmentActionListener != null) {
-                    Log.d("FINNE ID", "" + data.get(position).get_ID());
                     Bundle bundle = new Bundle();
                     bundle.putInt(FragmentActionListener.ACTION_KEY, listType);
                     bundle.putLong(FragmentActionListener.ACTION_ID, data.get(position).get_ID());
@@ -78,4 +92,6 @@ public class MyListFragment extends Fragment {
             }
         });
     }
+
+
 }

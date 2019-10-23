@@ -41,5 +41,4 @@ public class EditFriendFragment extends Fragment {
         etFriendName.setText(friend.getName());
         etFriendNumber.setText(friend.getPh_no());
     }
-
 }

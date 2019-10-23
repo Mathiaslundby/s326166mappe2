@@ -12,5 +12,9 @@ public interface FragmentActionListener {
     String ACTION_KEY = "action_key";
     String ACTION_ID = "action";
 
+    int ACTION_ADD = 4;
+    int ACTION_ADD_FRIEND = 5;
+    String KEY_ADD = "key_add";
+
     public void onAction(Bundle bundle);
 }
