@@ -24,6 +24,7 @@ public class EditFriendFragment extends Fragment {
     EditText etFriendName;
     EditText etFriendNumber;
     Button btnEdit;
+    Button btnDelete;
 
     public EditFriendFragment(Friend friend) {
         this.friend = friend;
@@ -42,6 +43,7 @@ public class EditFriendFragment extends Fragment {
         etFriendName = (EditText)view.findViewById(R.id.edit_friend_name);
         etFriendNumber = (EditText)view.findViewById(R.id.edit_friend_number);
         btnEdit = (Button)view.findViewById(R.id.btn_edit_friend);
+        btnDelete = (Button)view.findViewById(R.id.btn_delete_friend);
         dbHelper = new DbHelper(getContext());
 
         etFriendName.setText(friend.getName());
@@ -53,7 +55,16 @@ public class EditFriendFragment extends Fragment {
                 friend.setName(etFriendName.getText().toString());
                 friend.setPh_no(etFriendNumber.getText().toString());
                 dbHelper.editFriend(friend);
-                Toast.makeText(getContext(), "EDIT FRIEND", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "EDITED FRIEND", Toast.LENGTH_SHORT).show();
+                getActivity().onBackPressed();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.deleteFriend(friend.get_ID());
+                Toast.makeText(getContext(), "Deleted " + friend.getName(), Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });

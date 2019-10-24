@@ -120,10 +120,26 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
                 editFriend(bundle);
                 break;
 
+            case  FragmentActionListener.ACTION_EDIT_RESTAURANT:
+                editRest(bundle);
+                break;
+
             case FragmentActionListener.ACTION_ADD:
                 addToList(bundle);
                 break;
         }
+    }
+
+    private void editRest(Bundle bundle) {
+        long id = bundle.getLong(FragmentActionListener.ACTION_ID);
+        Restaurant rest = dbHelper.getRest(id);
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        EditRestFragment editRestFragment = new EditRestFragment(rest);
+
+        fragmentTransaction.replace(R.id.fragmentContainer, editRestFragment);
+        fragmentTransaction.addToBackStack("edit");
+        fragmentTransaction.commit();
     }
 
     private void editFriend(Bundle bundle) {

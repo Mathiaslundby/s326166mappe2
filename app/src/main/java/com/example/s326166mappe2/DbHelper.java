@@ -62,6 +62,42 @@ public class DbHelper extends SQLiteOpenHelper {
         db.insert(DbContract.Restaurants.TABLE_NAME, null, values);
     }
 
+    public Restaurant getRest(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(DbContract.Restaurants.SELECT_ONE(id), null);
+        if(cursor.moveToFirst()) {
+            Restaurant r = new Restaurant();
+            r.set_ID(cursor.getLong(0));
+            r.setName(cursor.getString(1));
+            r.setAddress(cursor.getString(2));
+            r.setPh_no(cursor.getString(3));
+            r.setType(cursor.getString(4));
+            cursor.close();
+            return r;
+        }
+        return null;
+    }
+
+    public int editRestaurant(Restaurant rest) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DbContract.Restaurants.COLUMN_NAME, rest.getName());
+        values.put(DbContract.Restaurants.COLUMN_ADDRESS, rest.getAddress());
+        values.put(DbContract.Restaurants.COLUMN_PH_NO, rest.getPh_no());
+        values.put(DbContract.Restaurants.COLUMN_TYPE, rest.getType());
+        int changed = db.update(DbContract.Restaurants.TABLE_NAME, values,
+                DbContract.Restaurants._ID + "=?",
+                new String[]{String.valueOf(rest.get_ID())});
+        db.close();
+        return changed;
+    }
+
+    public void deleteRestuarant(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DbContract.Restaurants.TABLE_NAME, DbContract.Restaurants._ID + " =? ",
+                new String[]{Long.toString(id)});
+    }
+
     public List<Friend> getAllFriends() {
         List<Friend> fList = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -113,6 +149,12 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
         Log.d("EDIT FRIEND", changed + "");
         return changed;
+    }
+
+    public void deleteFriend(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DbContract.Friends.TABLE_NAME, DbContract.Friends._ID + " =? ",
+                new String[]{Long.toString(id)});
     }
 }
 

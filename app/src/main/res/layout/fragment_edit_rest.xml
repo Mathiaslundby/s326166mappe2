@@ -4,30 +4,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EditFriendFragment">
+    tools:context=".EditRestFragment">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_friend_name"
+        android:id="@+id/edit_rest_name"
         android:layout_margin="20dp"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_friend_number"
+        android:id="@+id/edit_rest_address"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_rest_number"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_rest_Type"
         android:layout_margin="20dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_edit_friend"
-        android:layout_margin="40dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_edit_rest"
         android:text="Confirm changes"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_delete_friend"
-        android:layout_margin="40dp"
-        android:text="Delete friend"/>
+        android:id="@+id/btn_delete_rest"
+        android:layout_marginTop="20dp"
+        android:text="Delete Restaurant"/>
 </LinearLayout>
