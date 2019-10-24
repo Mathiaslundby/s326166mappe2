@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -16,10 +18,12 @@ import android.widget.EditText;
  */
 public class EditFriendFragment extends Fragment {
 
+    DbHelper dbHelper;
     Friend friend;
     View view;
     EditText etFriendName;
     EditText etFriendNumber;
+    Button btnEdit;
 
     public EditFriendFragment(Friend friend) {
         this.friend = friend;
@@ -37,8 +41,21 @@ public class EditFriendFragment extends Fragment {
     private void initUI() {
         etFriendName = (EditText)view.findViewById(R.id.edit_friend_name);
         etFriendNumber = (EditText)view.findViewById(R.id.edit_friend_number);
+        btnEdit = (Button)view.findViewById(R.id.btn_edit_friend);
+        dbHelper = new DbHelper(getContext());
 
         etFriendName.setText(friend.getName());
         etFriendNumber.setText(friend.getPh_no());
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                friend.setName(etFriendName.getText().toString());
+                friend.setPh_no(etFriendNumber.getText().toString());
+                dbHelper.editFriend(friend);
+                Toast.makeText(getContext(), "EDIT FRIEND", Toast.LENGTH_SHORT).show();
+                getActivity().onBackPressed();
+            }
+        });
     }
 }

@@ -16,4 +16,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/edit_friend_number"
         android:layout_margin="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_edit_friend"
+        android:layout_margin="40dp"
+        android:text="Confirm changes"/>
 </LinearLayout>

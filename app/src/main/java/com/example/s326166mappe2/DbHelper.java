@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,8 +99,20 @@ public class DbHelper extends SQLiteOpenHelper {
             cursor.close();
             return f;
         }
-
         return null;
+    }
+    
+    public int editFriend(Friend friend) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DbContract.Friends.COLUMN_NAME, friend.getName());
+        values.put(DbContract.Friends.COLUMN_PH_NO, friend.getPh_no());
+        int changed = db.update(DbContract.Friends.TABLE_NAME, values,
+                DbContract.Friends._ID + "=?",
+                new String[]{String.valueOf(friend.get_ID())});
+        db.close();
+        Log.d("EDIT FRIEND", changed + "");
+        return changed;
     }
 }
 
