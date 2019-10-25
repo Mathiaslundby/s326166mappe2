@@ -45,7 +45,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
             convertView.setTag(viewHolder);
         }
         else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (ViewHolder)convertView.getTag();
         }
 
         switch (listType) {

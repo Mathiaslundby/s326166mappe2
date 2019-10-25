@@ -147,7 +147,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 DbContract.Friends._ID + "=?",
                 new String[]{String.valueOf(friend.get_ID())});
         db.close();
-        Log.d("EDIT FRIEND", changed + "");
         return changed;
     }
 

@@ -13,8 +13,9 @@ public interface FragmentActionListener {
     String ACTION_ID = "action";
 
     int ACTION_ADD = 4;
-    int ACTION_ADD_FRIEND = 5;
     String KEY_ADD = "key_add";
+
+    int ACTION_ADD_EVENT = 5;
 
     public void onAction(Bundle bundle);
 }

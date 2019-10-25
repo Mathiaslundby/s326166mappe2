@@ -27,21 +27,10 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         dbHelper = new DbHelper(this);
-
-        Friend f = new Friend("Jarsveen", "911");
-        /*
-        dbHelper.addFriend(f);
-        Restaurant r = new Restaurant("Max", "Stortinget", "87654321", "Burger");
-        dbHelper.addRestaurant(r);
-        dbHelper.addRestaurant(r);
-        dbHelper.addRestaurant(r);
-        dbHelper.addRestaurant(r);
-*/
-
         fragmentManager = getSupportFragmentManager();
         toolbar = (Toolbar)findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         addListFragment(FRIENDS);
     }
@@ -65,9 +54,23 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
             case R.id.restaurants:
                 list = FragmentActionListener.RESTS;
                 break;
+
+            case R.id.events:
+                addEventListFragment();
+                return super.onOptionsItemSelected(item);
         }
         addListFragment(list);
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addEventListFragment() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        EventListFragment eventListFragment = new EventListFragment();
+        eventListFragment.setFragmentActionListener(this);
+
+        fragmentTransaction.replace(R.id.fragmentContainer, eventListFragment);
+        fragmentTransaction.addToBackStack("lists");
+        fragmentTransaction.commit();
     }
 
     private void addListFragment(int listType) {
@@ -127,7 +130,19 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
             case FragmentActionListener.ACTION_ADD:
                 addToList(bundle);
                 break;
+
+            case FragmentActionListener.ACTION_ADD_EVENT:
+                addEvent();
+                break;
         }
+    }
+
+    private void addEvent() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        AddEventFragment addEventFragment = new AddEventFragment();
+        fragmentTransaction.replace(R.id.fragmentContainer, addEventFragment);
+        fragmentTransaction.addToBackStack("list");
+        fragmentTransaction.commit();
     }
 
     private void editRest(Bundle bundle) {
