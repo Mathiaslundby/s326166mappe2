@@ -206,6 +206,14 @@ public class AddEventFragment extends Fragment {
     }
 
     private void addEvent() {
+
+        if(etDate.getText().length() == 0 || etTime.getText().length() == 0 ||
+                etRest.getText().length() == 0 || lvFriends.getAdapter() == null ||
+                lvFriends.getAdapter().getCount() == 0) {
+            Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String[] rest = etRest.getText().toString().split(", ");
         String[][] friends = new String[selectedFriends.size()][2];
         for(int i = 0; i < selectedFriends.size(); i++) {
@@ -230,5 +238,7 @@ public class AddEventFragment extends Fragment {
         for (long friendId : friendIds) {
             dbHelper.addEventFriend(eventId, friendId);
         }
+
+        getActivity().onBackPressed();
     }
 }
