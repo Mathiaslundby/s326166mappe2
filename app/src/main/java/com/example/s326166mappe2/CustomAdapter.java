@@ -12,13 +12,11 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends ArrayAdapter<DataModel> {
 
-    private ArrayList<DataModel> data;
     Context mContext;
     int listType;
 
     public CustomAdapter(ArrayList<DataModel> data, Context context, int listType) {
         super(context, R.layout.row_item, data);
-        this.data = data;
         this.mContext = context;
         this.listType = listType;
     }

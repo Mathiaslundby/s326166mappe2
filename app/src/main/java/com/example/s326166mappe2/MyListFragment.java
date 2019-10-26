@@ -64,6 +64,9 @@ public class MyListFragment extends Fragment {
                 break;
         }
 
+        adapter = new CustomAdapter(data, getContext(), listType);
+        listView.setAdapter(adapter);
+
         btnAdd = (ImageView)view.findViewById(R.id.list_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,9 +79,6 @@ public class MyListFragment extends Fragment {
                 }
             }
         });
-
-        adapter = new CustomAdapter(data, getContext(), listType);
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

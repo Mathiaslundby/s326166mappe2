@@ -1,5 +1,7 @@
 package com.example.s326166mappe2;
 
+import java.util.List;
+
 public class Event {
 
     private long _ID;
@@ -16,6 +18,12 @@ public class Event {
     }
 
     public Event(long _ID, long rest, String time) {
+        this._ID = _ID;
+        this.rest = rest;
+        this.time = time;
+    }
+
+    public Event(long _ID, long rest, String time, List<Friend> friends) {
         this._ID = _ID;
         this.rest = rest;
         this.time = time;

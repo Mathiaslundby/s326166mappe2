@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -19,7 +23,13 @@ public class EventListFragment extends Fragment {
 
     View view;
     ImageView btnAdd;
+    ListView lvEvents;
+
+    DbHelper dbHelper;
+    ArrayList<Event> events;
     FragmentActionListener fragmentActionListener;
+
+    private static EventListAdapter adapter;
 
     public EventListFragment() {
         // Required empty public constructor
@@ -39,6 +49,14 @@ public class EventListFragment extends Fragment {
 
     private void initUI() {
         btnAdd = (ImageView)view.findViewById(R.id.event_add);
+        lvEvents = (ListView)view.findViewById(R.id.lvEvents);
+
+        dbHelper = new DbHelper(getContext());
+        events = new ArrayList<>();
+        events.addAll(dbHelper.getAllEvents());
+
+        adapter = new EventListAdapter(events, getContext());
+        lvEvents.setAdapter(adapter);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {  //Bugged somehow ?
             @Override

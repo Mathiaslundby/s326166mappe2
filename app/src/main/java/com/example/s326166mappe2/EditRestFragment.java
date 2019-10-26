@@ -71,7 +71,7 @@ public class EditRestFragment extends Fragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbHelper.deleteRestuarant(rest.get_ID());
+                dbHelper.deleteRestaurant(rest.get_ID());
                 Toast.makeText(getContext(), "Deleted " + rest.getName(), Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }

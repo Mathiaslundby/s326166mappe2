@@ -69,6 +69,9 @@ public final class DbContract {
         public static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
 
+        public static String SELECT_WHERE(long id) {
+            return "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EVENT + " = " + id;
+        }
     }
 
     public static class Friends implements BaseColumns {
