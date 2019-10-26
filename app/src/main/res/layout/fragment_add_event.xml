@@ -44,34 +44,47 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lvEvents"
+        android:id="@+id/lvFriends"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lvEvents"
-        android:src="@drawable/ic_add_circle_24dp"
-        android:layout_centerHorizontal="true"/>
+    </ListView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friends"
-        android:textSize="24sp"
-        android:layout_above="@id/lvEvents"
-        android:layout_centerHorizontal="true"/>
+        android:text="Empty list"
+        android:id="@+id/list_event_empty"
+        android:layout_centerInParent="true"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/select_friends"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/lvFriends"
+        android:text="Select friends"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tvFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Friends"
+        android:textSize="24sp"
+        android:layout_above="@id/lvFriends"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/btn_add_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_check_circle"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="60dp"
-        android:text="Add event"/>
+        android:layout_margin="10dp"/>
 
 </RelativeLayout>

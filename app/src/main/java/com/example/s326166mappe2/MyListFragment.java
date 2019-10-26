@@ -92,6 +92,4 @@ public class MyListFragment extends Fragment {
             }
         });
     }
-
-
 }

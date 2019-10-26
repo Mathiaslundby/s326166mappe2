@@ -78,6 +78,22 @@ public class DbHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public Restaurant getSelectedRest(String name, String address) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(DbContract.Restaurants.SELECT_WHERE(name, address), null);
+        if (cursor.moveToFirst()) {
+            Restaurant r = new Restaurant();
+            r.set_ID(cursor.getLong(0));
+            r.setName(cursor.getString(1));
+            r.setAddress(cursor.getString(2));
+            r.setPh_no(cursor.getString(3));
+            r.setType(cursor.getString(4));
+            cursor.close();
+            return r;
+        }
+        return null;
+    }
+
     public int editRestaurant(Restaurant rest) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -114,6 +130,23 @@ public class DbHelper extends SQLiteOpenHelper {
             cursor.close();
         }
         return fList;
+    }
+
+    public List<Friend> getSelectedFriends(String name, String number) {
+        List<Friend> friends = new ArrayList<>();
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery(DbContract.Friends.SELECT_WHERE(name, number), null);
+        if(cursor.moveToFirst()) {
+            do {
+                Friend f = new Friend();
+                f.set_ID(cursor.getLong(0));
+                f.setName(cursor.getString(1));
+                f.setPh_no(cursor.getString(2));
+                friends.add(f);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return friends;
     }
 
     public void addFriend(Friend friend) {
