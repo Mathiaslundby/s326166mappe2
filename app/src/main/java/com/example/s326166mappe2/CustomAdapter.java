@@ -31,7 +31,6 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        //Restaurant friend = (Restaurant) getItem(position);
 
         ViewHolder viewHolder;
 

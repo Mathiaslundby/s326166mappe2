@@ -5,24 +5,42 @@
     android:layout_height="match_parent"
     tools:context=".AddEventFragment">
 
+    <EditText
+        android:id="@+id/event_add_rest"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:inputType="none"
+        android:focusable="false"
+        android:clickable="true"
+        android:hint="Restaurant" />
+
     <LinearLayout
+        android:id="@+id/datetime_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp">
+        android:layout_below="@id/event_add_rest">
 
         <EditText
-            android:id="@+id/event_add_rest"
+            android:id="@+id/event_add_date"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Restaurant"/>
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"
+            android:hint="Date"/>
 
         <EditText
             android:id="@+id/event_add_time"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Time"/>
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"
+            android:hint="Time"/>
     </LinearLayout>
 
     <ListView
