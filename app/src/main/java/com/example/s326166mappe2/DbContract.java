@@ -25,7 +25,7 @@ public final class DbContract {
     }
 
     public static class Restaurants implements BaseColumns {
-        public static final String TABLE_NAME = "rest_table";
+        public static final String TABLE_NAME = "rests_table";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_ADDRESS = "address";
         public static final String COLUMN_PH_NO = "phone_number";
@@ -53,6 +53,22 @@ public final class DbContract {
             return "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + name +
                     "' AND " + COLUMN_ADDRESS + " = '" + address + "';";
         }
+    }
+
+    public static class EventFriend implements BaseColumns {
+        public static final String TABLE_NAME = "event_friend";
+        public static final String COLUMN_EVENT = "event";
+        public static final String COLUMN_FRIEND = "friend";
+
+        public final static String SQL_CREATE_ENTRIES =
+                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
+                        _ID + " INTEGER PRIMARY KEY, " +
+                        COLUMN_EVENT + " INTEGER, " +
+                        COLUMN_FRIEND + " INTEGER);";
+
+        public static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     }
 
     public static class Friends implements BaseColumns {

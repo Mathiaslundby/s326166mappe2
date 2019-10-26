@@ -24,13 +24,49 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DbContract.Restaurants.SQL_CREATE_ENTRIES);
         db.execSQL(DbContract.Friends.SQL_CREATE_ENTRIES);
+        db.execSQL(DbContract.Events.SQL_CREATE_ENTRIES);
+        db.execSQL(DbContract.EventFriend.SQL_CREATE_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DbContract.Restaurants.SQL_DELETE_ENTRIES);
         db.execSQL(DbContract.Friends.SQL_DELETE_ENTRIES);
+        db.execSQL(DbContract.Events.SQL_DELETE_ENTRIES);
+        db.execSQL(DbContract.EventFriend.SQL_DELETE_ENTRIES);
     }
+
+    public void addEvent(Event event) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DbContract.Events.COLUMN_REST, event.getRest());
+        values.put(DbContract.Events.COLUMN_TIME, event.getTime());
+        db.insert(DbContract.Events.TABLE_NAME, null, values);
+    }
+
+    public long getEventId() {  //Returns id of latest entry to Event table
+        long id = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(DbContract.Events.SELECT_ALL, null);
+
+        if(cursor.moveToFirst()) {
+            do {
+                id = cursor.getLong(1);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return id;
+    }
+
+
+    public void addEventFriend(long eventId, long friendId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DbContract.EventFriend.COLUMN_EVENT, eventId);
+        values.put(DbContract.EventFriend.COLUMN_FRIEND, friendId);
+        db.insert(DbContract.EventFriend.TABLE_NAME, null, values);
+    }
+
 
     public List<Restaurant> getAllRests() {
         List<Restaurant> rList = new ArrayList<>();
@@ -104,7 +140,6 @@ public class DbHelper extends SQLiteOpenHelper {
         int changed = db.update(DbContract.Restaurants.TABLE_NAME, values,
                 DbContract.Restaurants._ID + "=?",
                 new String[]{String.valueOf(rest.get_ID())});
-        db.close();
         return changed;
     }
 
@@ -132,21 +167,16 @@ public class DbHelper extends SQLiteOpenHelper {
         return fList;
     }
 
-    public List<Friend> getSelectedFriends(String name, String number) {
-        List<Friend> friends = new ArrayList<>();
+    public long getSelectedFriendId(String name, String number) {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(DbContract.Friends.SELECT_WHERE(name, number), null);
         if(cursor.moveToFirst()) {
-            do {
-                Friend f = new Friend();
-                f.set_ID(cursor.getLong(0));
-                f.setName(cursor.getString(1));
-                f.setPh_no(cursor.getString(2));
-                friends.add(f);
-            } while (cursor.moveToNext());
+            long id = cursor.getLong(0);
             cursor.close();
+            return id;
         }
-        return friends;
+        cursor.close();
+        return 0;
     }
 
     public void addFriend(Friend friend) {
@@ -179,7 +209,6 @@ public class DbHelper extends SQLiteOpenHelper {
         int changed = db.update(DbContract.Friends.TABLE_NAME, values,
                 DbContract.Friends._ID + "=?",
                 new String[]{String.valueOf(friend.get_ID())});
-        db.close();
         return changed;
     }
 

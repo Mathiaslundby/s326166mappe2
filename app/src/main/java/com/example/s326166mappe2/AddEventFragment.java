@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,7 @@ public class AddEventFragment extends Fragment {
         btnSelectFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedFriends = new ArrayList<>();
                 setFriends();
             }
         });
@@ -174,7 +176,6 @@ public class AddEventFragment extends Fragment {
         mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                selectedFriends = new ArrayList<>();
 
                 for (int i = 0; i < checkedFriends.length; i++) {
                     if(checkedFriends[i]) {
@@ -213,9 +214,21 @@ public class AddEventFragment extends Fragment {
             friends[i][1] = f[1];
         }
 
-        List<Friend> friendList = dbHelper.getSelectedFriends(friends[0][0], friends[0][1]);
+        String time = etDate.getText().toString() + " " + etTime.getText().toString();
         Restaurant r = dbHelper.getSelectedRest(rest[0], rest[1]);
+        long[] friendIds = new long[selectedFriends.size()];
+        for (int i = 0; i < friends.length; i++) {
+            friendIds[i] = dbHelper.getSelectedFriendId(friends[i][0], friends[i][1]);
+        }
 
+        Event event = new Event(r.get_ID(), time);
+        dbHelper.addEvent(event);
 
+        Log.d("LOGGING", "" + selectedFriends.size());
+
+        long eventId = dbHelper.getEventId();
+        for (long friendId : friendIds) {
+            dbHelper.addEventFriend(eventId, friendId);
+        }
     }
 }
