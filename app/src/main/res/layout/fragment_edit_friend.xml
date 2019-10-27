@@ -6,18 +6,28 @@
     android:orientation="vertical"
     tools:context=".EditFriendFragment">
 
+    <TextView
+        android:id="@+id/tvEditFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/editFriend"
+        android:textSize="26sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/edit_friend_name"
+        android:layout_below="@id/tvEditFriend"
         android:drawableStart="@drawable/ic_person"
         style="@style/etStyle"
-        android:hint="Name"/>
+        android:hint="@string/name"/>
 
     <EditText
         android:id="@+id/edit_friend_number"
         android:drawableStart="@drawable/ic_phone"
         style="@style/etStyle"
         android:layout_below="@id/edit_friend_name"
-        android:hint="Number"/>
+        android:hint="@string/number"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

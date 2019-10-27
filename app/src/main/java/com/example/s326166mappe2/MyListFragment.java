@@ -28,6 +28,7 @@ public class MyListFragment extends Fragment {
     View view;
     ImageView btnAdd;
     TextView tvEmpty;
+    TextView tvList;
     ArrayList<DataModel> data;
     ListView listView;
     DbHelper dbHelper;
@@ -57,15 +58,18 @@ public class MyListFragment extends Fragment {
     private void initUI() {
         listView = (ListView)view.findViewById(R.id.friendsList);
         tvEmpty = (TextView)view.findViewById(R.id.my_list_empty);
+        tvList = (TextView)view.findViewById(R.id.tvList);
         data = new ArrayList<>();
         dbHelper = new DbHelper(getContext());
 
         switch (listType) {
             case FragmentActionListener.FRIENDS:
+                tvList.setText(R.string.friendList);
                 data.addAll(dbHelper.getAllFriends());
                 break;
 
             case FragmentActionListener.RESTS:
+                tvList.setText(R.string.restList);
                 data.addAll(dbHelper.getAllRests());
                 break;
         }

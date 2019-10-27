@@ -57,7 +57,7 @@ public class EditFriendFragment extends Fragment {
                 friend.setName(etFriendName.getText().toString());
                 friend.setPh_no(etFriendNumber.getText().toString());
                 dbHelper.editFriend(friend);
-                Toast.makeText(getContext(), "EDITED FRIEND", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Edited friend", Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }
         });

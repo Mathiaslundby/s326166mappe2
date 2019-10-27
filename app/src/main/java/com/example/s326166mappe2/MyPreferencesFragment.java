@@ -40,8 +40,11 @@ public class MyPreferencesFragment extends PreferenceFragment {
                 else {
                     Intent intent = new Intent(getContext(), EventService.class);
                     PendingIntent pintent = PendingIntent.getService(getContext(),0,intent,0);
+                    AlarmManager alarm = (AlarmManager)getActivity().getSystemService(getContext().ALARM_SERVICE);
 
-                    //Avslutt service
+                    if(alarm != null) {
+                        alarm.cancel(pintent);
+                    }
                 }
                 return true;
             }
@@ -51,12 +54,10 @@ public class MyPreferencesFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 if(!((CheckBoxPreference)findPreference("pref_sms")).isChecked()) {
-                    Toast.makeText(getContext(), "SMS notifications are now on", Toast.LENGTH_SHORT).show();
-                    //make stuff happen
+                    //Turn SMS service on
                 }
                 else {
-                    Toast.makeText(getContext(), "SMS notifications are now off", Toast.LENGTH_SHORT).show();
-                    //make other stuff happen
+                    //Turn SMS service off
                 }
                 return true;
             }

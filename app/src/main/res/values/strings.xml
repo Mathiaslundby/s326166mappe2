@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">s326166mappe2</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="emptyList">Empty list</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="number">Phone number</string>
+    <string name="type">Type</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="friends">Friends</string>
+    <string name="selectFriends">Select friends</string>
+    <string name="addEvent">Add Event</string>
+    <string name="addFriend">Add friend</string>
+    <string name="addRest">Add restaurant</string>
+    <string name="editFriend">Edit friend</string>
+    <string name="editRest">Edit restaurant</string>
+    <string name="eventList">Event list</string>
+    <string name="friendList">Friend list</string>
+    <string name="restList">Restaurant list</string>
 </resources>

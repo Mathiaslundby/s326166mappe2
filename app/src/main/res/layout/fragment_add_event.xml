@@ -5,17 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".AddEventFragment">
 
+    <TextView
+        android:id="@+id/tvAddEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addEvent"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/event_add_rest"
         android:drawableStart="@drawable/ic_restaurant"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/tvAddEvent"
         android:layout_centerHorizontal="true"
         android:inputType="none"
         android:focusable="false"
         android:clickable="true"
-        android:hint="Restaurant" />
+        android:hint="@string/restaurant" />
 
     <LinearLayout
         android:id="@+id/datetime_layout"
@@ -33,7 +42,7 @@
             android:inputType="none"
             android:focusable="false"
             android:clickable="true"
-            android:hint="Date"/>
+            android:hint="@string/date"/>
 
         <EditText
             android:id="@+id/event_add_time"
@@ -43,13 +52,13 @@
             android:inputType="none"
             android:focusable="false"
             android:clickable="true"
-            android:hint="Time"/>
+            android:hint="@string/time"/>
     </LinearLayout>
 
     <ListView
         android:id="@+id/lvFriends"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
@@ -59,7 +68,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empty list"
+        android:text="@string/emptyList"
         android:id="@+id/list_event_friends_empty"
         android:layout_centerInParent="true"/>
 
@@ -69,14 +78,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lvFriends"
-        android:text="Select friends"
+        android:text="@string/selectFriends"
         android:layout_centerHorizontal="true"/>
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/tvFriends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friends"
+        android:text="@string/friends"
         android:textSize="24sp"
         android:layout_above="@id/lvFriends"
         android:layout_centerHorizontal="true"/>

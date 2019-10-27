@@ -6,32 +6,42 @@
     android:orientation="vertical"
     tools:context=".AddRestFragment">
 
+    <TextView
+        android:id="@+id/tvAddRest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addRest"
+        android:textSize="26sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/add_rest_name"
+        android:layout_below="@id/tvAddRest"
         android:drawableStart="@drawable/ic_home"
         style="@style/etStyle"
-        android:hint="Name"/>
+        android:hint="@string/restaurant"/>
 
     <EditText
         android:id="@+id/add_rest_address"
         android:drawableStart="@drawable/ic_location"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_name"
-        android:hint="Address"/>
+        android:hint="@string/address"/>
 
     <EditText
         android:id="@+id/add_rest_number"
         android:drawableStart="@drawable/ic_phone"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_address"
-        android:hint="Phone number"/>
+        android:hint="@string/number"/>
 
     <EditText
         android:id="@+id/add_rest_Type"
         android:drawableStart="@drawable/ic_restaurant"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_number"
-        android:hint="Type"/>
+        android:hint="@string/type"/>
 
     <ImageView
         android:id="@+id/btn_add_rest"

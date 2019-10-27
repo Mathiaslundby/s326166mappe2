@@ -5,7 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".EventListFragment">
 
+    <TextView
+        android:id="@+id/tvEventList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/eventList"
+        android:textSize="26sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
     <ListView
+        android:layout_below="@id/tvEventList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lvEvents" />
@@ -16,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="24sp"
-        android:text="Empty list"/>
+        android:text="@string/emptyList"/>
 
     <ImageView
         android:id="@+id/event_add"
