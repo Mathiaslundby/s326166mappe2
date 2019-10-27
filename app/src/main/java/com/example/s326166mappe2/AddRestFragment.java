@@ -3,6 +3,7 @@ package com.example.s326166mappe2;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -22,13 +24,19 @@ public class AddRestFragment extends Fragment {
     EditText etAddress;
     EditText etNumber;
     EditText etType;
-    Button btnAdd;
+    ImageView btnAdd;
     View view;
 
     DbHelper dbHelper;
 
     public AddRestFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add restaurant");
     }
 
     @Override
@@ -44,7 +52,7 @@ public class AddRestFragment extends Fragment {
         etAddress = (EditText)view.findViewById(R.id.add_rest_address);
         etNumber = (EditText)view.findViewById(R.id.add_rest_number);
         etType = (EditText)view.findViewById(R.id.add_rest_Type);
-        btnAdd = (Button)view.findViewById(R.id.btn_add_rest);
+        btnAdd = (ImageView)view.findViewById(R.id.btn_add_rest);
         dbHelper = new DbHelper(getContext());
 
         btnAdd.setOnClickListener(new View.OnClickListener() {

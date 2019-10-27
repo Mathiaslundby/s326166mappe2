@@ -79,6 +79,23 @@ public class DbHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public long getEventIdFromRestId(long restId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(DbContract.Events.SELECT_WITH_RESTID(restId), null);
+
+        if(cursor.moveToFirst()) {
+            return cursor.getLong(0);
+        }
+        return 0;
+    }
+
+    public void deleteEvent(long restId) {  //When restaurant used in event is deleted, delete event as well
+        SQLiteDatabase db = this.getWritableDatabase();
+        long id = getEventIdFromRestId(restId);
+        db.delete(DbContract.Events.TABLE_NAME, DbContract.Events._ID + " =? ",
+                new String[]{Long.toString(id)});
+    }
+
 
     //-------------------EventFriends-------------------
 

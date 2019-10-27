@@ -30,7 +30,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
         TextView tvRest;
         TextView tvTime;
         TextView tvNumber;
-        ListView lvFriends;
+        TextView tvFriends;
     }
 
     @NonNull
@@ -46,7 +46,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
             viewHolder.tvRest = (TextView)convertView.findViewById(R.id.event_rest);
             viewHolder.tvTime = (TextView)convertView.findViewById(R.id.event_time);
             viewHolder.tvNumber = (TextView)convertView.findViewById(R.id.event_rest_number);
-            viewHolder.lvFriends = (ListView)convertView.findViewById(R.id.lv_event_friends);
+            viewHolder.tvFriends = (TextView)convertView.findViewById(R.id.event_friends);
 
             convertView.setTag(viewHolder);
         }
@@ -56,18 +56,26 @@ public class EventListAdapter extends ArrayAdapter<Event> {
 
         Event event = (Event) getItem(position);
         Restaurant rest = dbHelper.getRest(event.getRest());
+        if(rest == null) return convertView;    //midlertidig løsning
         List<String> friends = new ArrayList<>();
         List<Long> friendIds = dbHelper.getFriendIds(event.get_ID());
+        String restNameAndAddress = rest.getName() + ", " + rest.getAddress();
 
         for (long id : friendIds) {
-            friends.add(dbHelper.getFriend(id).getName());
+            if(dbHelper.getFriend(id) != null) {
+                friends.add(dbHelper.getFriend(id).getName());
+            }
         }
-        String restNameAndAddress = rest.getName() + ", " + rest.getAddress();
+
+        String friendNames = "";
+        for(String s : friends) {
+            friendNames += s + "\n";
+        }
+
         viewHolder.tvRest.setText(restNameAndAddress);
         viewHolder.tvTime.setText(event.getTime());
         viewHolder.tvNumber.setText(rest.getPh_no());
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, friends);
-        viewHolder.lvFriends.setAdapter(adapter);
+        viewHolder.tvFriends.setText(friendNames);
 
         return convertView;
     }

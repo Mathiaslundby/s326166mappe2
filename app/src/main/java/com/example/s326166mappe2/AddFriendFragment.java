@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
@@ -20,12 +22,18 @@ public class AddFriendFragment extends Fragment {
     View view;
     EditText etName;
     EditText etNumber;
-    Button btnAdd;
+    ImageView btnAdd;
 
     DbHelper dbHelper;
 
     public AddFriendFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add friend");
     }
 
     @Override
@@ -39,7 +47,7 @@ public class AddFriendFragment extends Fragment {
     private void initUI() {
         etName = (EditText)view.findViewById(R.id.add_friend_name);
         etNumber = (EditText)view.findViewById(R.id.add_friend_number);
-        btnAdd = (Button)view.findViewById(R.id.btn_add_friend);
+        btnAdd = (ImageView) view.findViewById(R.id.btn_add_friend);
         dbHelper = new DbHelper(getContext());
 
         btnAdd.setOnClickListener(new View.OnClickListener() {

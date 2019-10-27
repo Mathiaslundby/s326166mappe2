@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,40 +7,44 @@
     tools:context=".EditRestFragment">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edit_rest_name"
-        android:layout_margin="20dp"/>
+        style="@style/etStyle"
+        android:hint="Name"/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edit_rest_address"
-        android:layout_margin="20dp"/>
+        style="@style/etStyle"
+        android:hint="Address"
+        android:layout_below="@id/edit_rest_name"/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edit_rest_number"
-        android:layout_margin="20dp"/>
+        style="@style/etStyle"
+        android:hint="Phone number"
+        android:layout_below="@id/edit_rest_address"/>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edit_rest_Type"
-        android:layout_margin="20dp"/>
+        style="@style/etStyle"
+        android:hint="Type"
+        android:layout_below="@id/edit_rest_number"/>
 
-    <Button
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btn_edit_rest"
-        android:text="Confirm changes"/>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_delete_rest"
-        android:layout_marginTop="20dp"
-        android:text="Delete Restaurant"/>
-</LinearLayout>
+        <ImageView
+            android:id="@+id/btn_edit_rest"
+            android:src="@drawable/ic_check_circle"
+            style="@style/imgViewStyle"/>
+
+        <ImageView
+            android:id="@+id/btn_delete_rest"
+            android:src="@drawable/delete_button"
+            style="@style/imgViewStyle"/>
+    </LinearLayout>
+
+</RelativeLayout>

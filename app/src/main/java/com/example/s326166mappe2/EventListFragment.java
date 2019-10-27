@@ -3,6 +3,7 @@ package com.example.s326166mappe2;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -33,6 +34,12 @@ public class EventListFragment extends Fragment {
 
     public EventListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Your events");
     }
 
     public void setFragmentActionListener(FragmentActionListener fragmentActionListener) {

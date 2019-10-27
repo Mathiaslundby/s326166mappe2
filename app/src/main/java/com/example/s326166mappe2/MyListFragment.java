@@ -3,6 +3,7 @@ package com.example.s326166mappe2;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,6 +37,16 @@ public class MyListFragment extends Fragment {
 
     public MyListFragment(int listType) {
         this.listType = listType;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(listType == FragmentActionListener.FRIENDS) {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Your friends");
+        } else {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Your restaurants");
+        }
     }
 
     public void setFragmentActionListener(FragmentActionListener fragmentActionListener) {

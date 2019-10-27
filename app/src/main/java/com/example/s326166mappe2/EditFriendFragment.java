@@ -3,6 +3,7 @@ package com.example.s326166mappe2;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -23,8 +25,8 @@ public class EditFriendFragment extends Fragment {
     View view;
     EditText etFriendName;
     EditText etFriendNumber;
-    Button btnEdit;
-    Button btnDelete;
+    ImageView btnEdit;
+    ImageView btnDelete;
 
     public EditFriendFragment(Friend friend) {
         this.friend = friend;
@@ -39,11 +41,17 @@ public class EditFriendFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit friend");
+    }
+
     private void initUI() {
         etFriendName = (EditText)view.findViewById(R.id.edit_friend_name);
         etFriendNumber = (EditText)view.findViewById(R.id.edit_friend_number);
-        btnEdit = (Button)view.findViewById(R.id.btn_edit_friend);
-        btnDelete = (Button)view.findViewById(R.id.btn_delete_friend);
+        btnEdit = (ImageView)view.findViewById(R.id.btn_edit_friend);
+        btnDelete = (ImageView)view.findViewById(R.id.btn_delete_friend);
         dbHelper = new DbHelper(getContext());
 
         etFriendName.setText(friend.getName());

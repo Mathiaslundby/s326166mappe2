@@ -15,26 +15,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/event_time"
-        android:text="dd/mm/yyyy HH:ss"
-        android:textSize="20sp"
+        android:id="@+id/event_rest_number"
+        android:text="XXXXXXXX"
+        android:textSize="18sp"
         android:layout_marginStart="20dp"
         android:layout_below="@id/event_rest"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/event_rest_number"
-        android:text="XXXXXXXX"
-        android:textSize="20sp"
+        android:id="@+id/event_time"
+        android:text="dd/mm/yyyy HH:ss"
+        android:textSize="18sp"
         android:layout_marginStart="20dp"
-        android:layout_below="@id/event_time"/>
+        android:layout_below="@id/event_rest_number"/>
 
-    <ListView
-        android:layout_width="150dp"
+    <TextView
+        android:id="@+id/event_friends"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lv_event_friends"
-        android:layout_alignParentEnd="true"
-        />
-
+        android:layout_below="@id/event_time"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:text="Friends"/>
 
 </RelativeLayout>

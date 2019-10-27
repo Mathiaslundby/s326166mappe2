@@ -22,6 +22,11 @@ public final class DbContract {
 
         public static final String SELECT_ALL =
                 "SELECT * FROM " + TABLE_NAME;
+
+        public static String SELECT_WITH_RESTID(long restId) {
+            return "SELECT * FROM " + TABLE_NAME + " WHERE " +
+                    COLUMN_REST + " = " + restId;
+        }
     }
 
     public static class Restaurants implements BaseColumns {

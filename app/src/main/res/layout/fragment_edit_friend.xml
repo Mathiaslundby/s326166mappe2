@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,27 +7,37 @@
     tools:context=".EditFriendFragment">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edit_friend_name"
-        android:layout_margin="20dp"/>
+        style="@style/etStyle"
+        android:hint="Name"/>
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edit_friend_number"
-        android:layout_margin="20dp"/>
+        style="@style/etStyle"
+        android:layout_below="@id/edit_friend_name"
+        android:hint="Number"/>
 
-    <Button
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_edit_friend"
-        android:layout_margin="40dp"
-        android:text="Confirm changes"/>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_delete_friend"
-        android:layout_margin="40dp"
-        android:text="Delete friend"/>
-</LinearLayout>
+        <ImageView
+            android:id="@+id/btn_edit_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_circle"
+            android:layout_margin="10dp"/>
+
+        <ImageView
+            android:id="@+id/btn_delete_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/delete_button"
+            android:layout_margin="10dp"
+            android:layout_toEndOf="@id/btn_edit_friend"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
