@@ -23,9 +23,9 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
     }
 
     private static class ViewHolder {
+        ImageView imgIcon;
         TextView txtTitle;
         TextView txtSubtitle;
-        ImageView btnEdit;
     }
 
     @NonNull
@@ -40,7 +40,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
             convertView = inflater.inflate(R.layout.row_item, parent, false);
             viewHolder.txtTitle = (TextView)convertView.findViewById(R.id.row_name);
             viewHolder.txtSubtitle = (TextView)convertView.findViewById(R.id.row_number);
-            viewHolder.btnEdit = (ImageView)convertView.findViewById(R.id.row_edit);
+            viewHolder.imgIcon = (ImageView)convertView.findViewById(R.id.friend_avatar);
 
             convertView.setTag(viewHolder);
         }
@@ -53,12 +53,14 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
                 Friend friend = (Friend)getItem(position);
                 viewHolder.txtTitle.setText(friend.getName());
                 viewHolder.txtSubtitle.setText(friend.getPh_no());
+                viewHolder.imgIcon.setImageResource(R.drawable.ic_person_black_24dp);
                 break;
 
             case FragmentActionListener.RESTS:
                 Restaurant restaurant = (Restaurant)getItem(position);
                 viewHolder.txtTitle.setText(restaurant.getName());
                 viewHolder.txtSubtitle.setText(restaurant.getAddress());
+                viewHolder.imgIcon.setImageResource(R.drawable.ic_restaurant);
                 break;
         }
         return convertView;

@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
 
     private void showSettings() {
         fragmentManager.beginTransaction().remove(currentFragment).commit();
-        currentFragment = null;
         prefs = new MyPreferencesFragment();
         getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, prefs).commit();
     }
