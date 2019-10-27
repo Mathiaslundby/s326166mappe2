@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class MyListFragment extends Fragment {
 
     View view;
     ImageView btnAdd;
+    TextView tvEmpty;
     ArrayList<DataModel> data;
     ListView listView;
     DbHelper dbHelper;
@@ -54,6 +56,7 @@ public class MyListFragment extends Fragment {
 
     private void initUI() {
         listView = (ListView)view.findViewById(R.id.friendsList);
+        tvEmpty = (TextView)view.findViewById(R.id.my_list_empty);
         data = new ArrayList<>();
         dbHelper = new DbHelper(getContext());
 
@@ -65,6 +68,9 @@ public class MyListFragment extends Fragment {
             case FragmentActionListener.RESTS:
                 data.addAll(dbHelper.getAllRests());
                 break;
+        }
+        if(data.size() > 0) {
+            tvEmpty.setVisibility(View.GONE);
         }
 
         adapter = new CustomAdapter(data, getContext(), listType);

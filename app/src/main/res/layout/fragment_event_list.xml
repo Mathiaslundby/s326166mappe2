@@ -10,6 +10,14 @@
         android:layout_height="match_parent"
         android:id="@+id/lvEvents" />
 
+    <TextView
+        android:id="@+id/list_event_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="24sp"
+        android:text="Empty list"/>
+
     <ImageView
         android:id="@+id/event_add"
         android:layout_width="wrap_content"

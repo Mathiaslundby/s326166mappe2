@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ public class EventListFragment extends Fragment {
     View view;
     ImageView btnAdd;
     ListView lvEvents;
+    TextView tvEmpty;
 
     DbHelper dbHelper;
     ArrayList<Event> events;
@@ -51,10 +54,16 @@ public class EventListFragment extends Fragment {
     private void initUI() {
         btnAdd = (ImageView)view.findViewById(R.id.event_add);
         lvEvents = (ListView)view.findViewById(R.id.lvEvents);
+        tvEmpty = (TextView)view.findViewById(R.id.list_event_empty);
 
         dbHelper = new DbHelper(getContext());
         events = new ArrayList<>();
         events.addAll(dbHelper.getAllEvents());
+
+        if(events.size() > 0) {
+            tvEmpty.setVisibility(View.INVISIBLE);
+        }
+
 
         adapter = new EventListAdapter(events, getContext());
         adapter.setFragmentActionListener(fragmentActionListener);

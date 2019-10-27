@@ -52,15 +52,21 @@ public class AddRestFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Restaurant rest = new Restaurant();
-                rest.setName(etName.getText().toString());
-                rest.setAddress(etAddress.getText().toString());
-                rest.setPh_no(etNumber.getText().toString());
-                rest.setType(etType.getText().toString());
+                if(etName.getText().length() == 0 || etAddress.getText().length() == 0 ||
+                        etNumber.getText().length() == 0 || etType.getText().length() == 0) {
+                    Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Restaurant rest = new Restaurant();
+                    rest.setName(etName.getText().toString());
+                    rest.setAddress(etAddress.getText().toString());
+                    rest.setPh_no(etNumber.getText().toString());
+                    rest.setType(etType.getText().toString());
 
-                dbHelper.addRestaurant(rest);
-                Toast.makeText(getContext(), "Restaurant added!", Toast.LENGTH_SHORT).show();
-                getActivity().onBackPressed();
+                    dbHelper.addRestaurant(rest);
+                    Toast.makeText(getContext(), rest.getName() + " added!", Toast.LENGTH_SHORT).show();
+                    getActivity().onBackPressed();
+                }
             }
         });
     }

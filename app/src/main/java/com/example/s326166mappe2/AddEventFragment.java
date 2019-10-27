@@ -66,7 +66,7 @@ public class AddEventFragment extends Fragment {
     }
 
     private void initUI() {
-        tvEmptyList = (TextView)view.findViewById(R.id.list_event_empty);
+        tvEmptyList = (TextView)view.findViewById(R.id.list_event_friends_empty);
         etDate = (EditText) view.findViewById(R.id.event_add_date);
         etTime = (EditText) view.findViewById(R.id.event_add_time);
         etRest = (EditText) view.findViewById(R.id.event_add_rest);

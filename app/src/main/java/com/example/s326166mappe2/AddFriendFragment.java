@@ -47,13 +47,18 @@ public class AddFriendFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Friend friend = new Friend();
-                friend.setName(etName.getText().toString());
-                friend.setPh_no(etNumber.getText().toString());
-                dbHelper.addFriend(friend);
+                if(etName.getText().length() == 0 || etNumber.getText().length() == 0) {
+                    Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Friend friend = new Friend();
+                    friend.setName(etName.getText().toString());
+                    friend.setPh_no(etNumber.getText().toString());
+                    dbHelper.addFriend(friend);
 
-                Toast.makeText(getContext(), "Friend added!", Toast.LENGTH_SHORT).show();
-                getActivity().onBackPressed();
+                    Toast.makeText(getContext(), friend.getName() + " added!", Toast.LENGTH_SHORT).show();
+                    getActivity().onBackPressed();
+                }
             }
         });
     }
