@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +87,13 @@ public class DbHelper extends SQLiteOpenHelper {
         return 0;
     }
 
-    public void deleteEvent(long restId) {  //When restaurant used in event is deleted, delete event as well
+    public void deleteEvent(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DbContract.Events.TABLE_NAME, DbContract.Events._ID + " =? ",
+                new String[]{Long.toString(id)});
+    }
+
+    public void deleteEventWithRestId(long restId) {  //When restaurant used in event is deleted, delete event as well
         SQLiteDatabase db = this.getWritableDatabase();
         long id = getEventIdFromRestId(restId);
         while (id != 0) {

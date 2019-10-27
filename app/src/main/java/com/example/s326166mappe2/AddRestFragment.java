@@ -34,12 +34,6 @@ public class AddRestFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add restaurant");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add_rest, container, false);

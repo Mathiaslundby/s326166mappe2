@@ -2,24 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:icon="@drawable/ic_person_black_24dp"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_friends"
+        app:showAsAction="always"
         android:id="@+id/friends"
         android:title="friends">
     </item>
 
     <item
         android:icon="@drawable/ic_restaurant_black_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:id="@+id/restaurants"
         android:title="restaurants">
     </item>
 
     <item
         android:icon="@drawable/ic_event_note_black_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:id="@+id/events"
         android:title="events">
+    </item>
+
+    <item
+        android:icon="@drawable/ic_settings_black_24dp"
+        app:showAsAction="always"
+        android:id="@+id/settings"
+        android:title="settings">
     </item>
 
 </menu>

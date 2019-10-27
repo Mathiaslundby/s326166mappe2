@@ -43,12 +43,6 @@ public class EditRestFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit restaurant");
-    }
-
     private void initUI() {
         etRestName = (EditText)view.findViewById(R.id.edit_rest_name);
         etRestAddress = (EditText)view.findViewById(R.id.edit_rest_address);
@@ -80,7 +74,7 @@ public class EditRestFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 dbHelper.deleteRestaurant(rest.get_ID());
-                dbHelper.deleteEvent(rest.get_ID());
+                dbHelper.deleteEventWithRestId(rest.get_ID());
                 Toast.makeText(getContext(), "Deleted " + rest.getName(), Toast.LENGTH_SHORT).show();
                 getActivity().onBackPressed();
             }

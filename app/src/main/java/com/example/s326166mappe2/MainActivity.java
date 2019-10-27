@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setSupportActionBar(toolbar);
         addListFragment(FRIENDS);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,6 +142,10 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
 
             case FragmentActionListener.ACTION_ADD_EVENT:
                 addEvent();
+                break;
+
+            case FragmentActionListener.EVENTS:
+                addEventListFragment();
                 break;
         }
     }

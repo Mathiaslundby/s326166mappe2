@@ -31,12 +31,6 @@ public class AddFriendFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add friend");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add_friend, container, false);

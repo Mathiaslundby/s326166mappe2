@@ -36,12 +36,6 @@ public class EventListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Your events");
-    }
-
     public void setFragmentActionListener(FragmentActionListener fragmentActionListener) {
         this.fragmentActionListener = fragmentActionListener;
     }
@@ -63,6 +57,7 @@ public class EventListFragment extends Fragment {
         events.addAll(dbHelper.getAllEvents());
 
         adapter = new EventListAdapter(events, getContext());
+        adapter.setFragmentActionListener(fragmentActionListener);
         lvEvents.setAdapter(adapter);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {  //Bugged somehow ?

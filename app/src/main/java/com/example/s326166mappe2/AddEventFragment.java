@@ -25,9 +25,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -47,19 +49,12 @@ public class AddEventFragment extends Fragment {
     DbHelper dbHelper;
     List<Friend> allFriends;
     List<String> selectedFriends;
-    Restaurant selectedRest;
 
     boolean[] prevChecked;
     boolean emptyList;
 
     public AddEventFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add event");
     }
 
     @Override
@@ -131,8 +126,7 @@ public class AddEventFragment extends Fragment {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        String time = hourOfDay + ":" + minute;
-                        etTime.setText(time);
+                        etTime.setText(String.format(Locale.ENGLISH, "%02d:%02d",hourOfDay, minute));
                     }
                 },0,0, true);
                 timePickerDialog.show();

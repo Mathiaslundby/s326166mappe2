@@ -41,12 +41,6 @@ public class EditFriendFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit friend");
-    }
-
     private void initUI() {
         etFriendName = (EditText)view.findViewById(R.id.edit_friend_name);
         etFriendNumber = (EditText)view.findViewById(R.id.edit_friend_number);

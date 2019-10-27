@@ -15,13 +15,13 @@
         android:id="@+id/add_rest_address"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_name"
-        android:hint="Phone number"/>
+        android:hint="Address"/>
 
     <EditText
         android:id="@+id/add_rest_number"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_address"
-        android:hint="Address"/>
+        android:hint="Phone number"/>
 
     <EditText
         android:id="@+id/add_rest_Type"

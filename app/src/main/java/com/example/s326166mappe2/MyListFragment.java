@@ -39,15 +39,6 @@ public class MyListFragment extends Fragment {
         this.listType = listType;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(listType == FragmentActionListener.FRIENDS) {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Your friends");
-        } else {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Your restaurants");
-        }
-    }
 
     public void setFragmentActionListener(FragmentActionListener fragmentActionListener) {
         this.fragmentActionListener = fragmentActionListener;
