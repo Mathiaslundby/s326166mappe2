@@ -7,7 +7,8 @@
 
     <EditText
         android:id="@+id/event_add_rest"
-        android:layout_width="240dp"
+        android:drawableStart="@drawable/ic_restaurant"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
@@ -26,7 +27,8 @@
 
         <EditText
             android:id="@+id/event_add_date"
-            android:layout_width="120dp"
+            android:drawableStart="@drawable/ic_calendar"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:inputType="none"
             android:focusable="false"
@@ -35,7 +37,8 @@
 
         <EditText
             android:id="@+id/event_add_time"
-            android:layout_width="120dp"
+            android:drawableStart="@drawable/ic_time"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:inputType="none"
             android:focusable="false"
@@ -51,7 +54,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginTop="5dp">
-
     </ListView>
 
     <TextView
@@ -63,6 +65,7 @@
 
     <Button
         android:id="@+id/select_friends"
+        android:drawableStart="@drawable/ic_person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lvFriends"

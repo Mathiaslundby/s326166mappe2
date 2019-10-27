@@ -4,16 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddFriendFragment"
-    >
+    tools:context=".AddFriendFragment">
 
     <EditText
         android:id="@+id/add_friend_name"
+        android:drawableStart="@drawable/ic_person"
         style="@style/etStyle"
         android:hint="Name"/>
 
     <EditText
         android:id="@+id/add_friend_number"
+        android:drawableStart="@drawable/ic_phone"
         style="@style/etStyle"
         android:layout_below="@+id/add_friend_name"
         android:hint="Phone number"/>
@@ -26,4 +27,5 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp" />
+
 </RelativeLayout>

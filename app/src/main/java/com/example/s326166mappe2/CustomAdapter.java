@@ -53,7 +53,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
                 Friend friend = (Friend)getItem(position);
                 viewHolder.txtTitle.setText(friend.getName());
                 viewHolder.txtSubtitle.setText(friend.getPh_no());
-                viewHolder.imgIcon.setImageResource(R.drawable.ic_person_black_24dp);
+                viewHolder.imgIcon.setImageResource(R.drawable.ic_person);
                 break;
 
             case FragmentActionListener.RESTS:

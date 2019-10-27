@@ -8,23 +8,27 @@
 
     <EditText
         android:id="@+id/add_rest_name"
+        android:drawableStart="@drawable/ic_home"
         style="@style/etStyle"
         android:hint="Name"/>
 
     <EditText
         android:id="@+id/add_rest_address"
+        android:drawableStart="@drawable/ic_location"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_name"
         android:hint="Address"/>
 
     <EditText
         android:id="@+id/add_rest_number"
+        android:drawableStart="@drawable/ic_phone"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_address"
         android:hint="Phone number"/>
 
     <EditText
         android:id="@+id/add_rest_Type"
+        android:drawableStart="@drawable/ic_restaurant"
         style="@style/etStyle"
         android:layout_below="@id/add_rest_number"
         android:hint="Type"/>
