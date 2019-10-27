@@ -81,7 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public long getEventIdFromRestId(long restId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(DbContract.Events.SELECT_WITH_RESTID(restId), null);
+        Cursor cursor = db.rawQuery(DbContract.Events.SELECT_WITH_REST_ID(restId), null);
 
         if(cursor.moveToFirst()) {
             return cursor.getLong(0);
@@ -92,8 +92,12 @@ public class DbHelper extends SQLiteOpenHelper {
     public void deleteEvent(long restId) {  //When restaurant used in event is deleted, delete event as well
         SQLiteDatabase db = this.getWritableDatabase();
         long id = getEventIdFromRestId(restId);
-        db.delete(DbContract.Events.TABLE_NAME, DbContract.Events._ID + " =? ",
-                new String[]{Long.toString(id)});
+        while (id != 0) {
+            db.delete(DbContract.Events.TABLE_NAME, DbContract.Events._ID + " =? ",
+                    new String[]{Long.toString(id)});
+            deleteEventFriends(id);
+            id = getEventIdFromRestId(restId);
+        }
     }
 
 
@@ -120,6 +124,21 @@ public class DbHelper extends SQLiteOpenHelper {
             }while (cursor.moveToNext());
         }
         return ids;
+    }
+
+    public void deleteEventFriends(long eventId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(DbContract.EventFriend.SELECT_WHERE(eventId), null);
+        long id;
+
+        if(cursor.moveToFirst()) {
+            do {
+                id = cursor.getLong(0);
+                db.delete(DbContract.EventFriend.TABLE_NAME, DbContract.EventFriend._ID + " =? ",
+                        new String[]{Long.toString(id)});
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
     }
 
 

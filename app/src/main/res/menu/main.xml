@@ -16,7 +16,7 @@
     </item>
 
     <item
-        android:icon="@drawable/ic_add_circle_24dp"
+        android:icon="@drawable/ic_event_note_black_24dp"
         app:showAsAction="ifRoom"
         android:id="@+id/events"
         android:title="events">

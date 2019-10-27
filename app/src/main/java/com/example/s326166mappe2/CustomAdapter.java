@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
     private static class ViewHolder {
         TextView txtTitle;
         TextView txtSubtitle;
+        ImageView btnEdit;
     }
 
     @NonNull
@@ -38,6 +40,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> {
             convertView = inflater.inflate(R.layout.row_item, parent, false);
             viewHolder.txtTitle = (TextView)convertView.findViewById(R.id.row_name);
             viewHolder.txtSubtitle = (TextView)convertView.findViewById(R.id.row_number);
+            viewHolder.btnEdit = (ImageView)convertView.findViewById(R.id.row_edit);
 
             convertView.setTag(viewHolder);
         }

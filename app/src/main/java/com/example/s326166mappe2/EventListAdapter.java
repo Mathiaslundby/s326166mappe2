@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +33,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
         TextView tvTime;
         TextView tvNumber;
         TextView tvFriends;
+        ImageView btnDelete;
     }
 
     @NonNull
@@ -47,6 +50,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
             viewHolder.tvTime = (TextView)convertView.findViewById(R.id.event_time);
             viewHolder.tvNumber = (TextView)convertView.findViewById(R.id.event_rest_number);
             viewHolder.tvFriends = (TextView)convertView.findViewById(R.id.event_friends);
+            viewHolder.btnDelete = (ImageView)convertView.findViewById(R.id.row_delete);
 
             convertView.setTag(viewHolder);
         }
@@ -54,7 +58,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        Event event = (Event) getItem(position);
+        final Event event = (Event) getItem(position);
         Restaurant rest = dbHelper.getRest(event.getRest());
         if(rest == null) return convertView;    //midlertidig løsning
         List<String> friends = new ArrayList<>();
@@ -76,6 +80,14 @@ public class EventListAdapter extends ArrayAdapter<Event> {
         viewHolder.tvTime.setText(event.getTime());
         viewHolder.tvNumber.setText(rest.getPh_no());
         viewHolder.tvFriends.setText(friendNames);
+
+        viewHolder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "DELETED " + event.get_ID(), Toast.LENGTH_SHORT).show();
+                dbHelper.deleteEvent(event.getRest());  //Deletes both?
+            }
+        });
 
         return convertView;
     }

@@ -23,11 +23,13 @@ public final class DbContract {
         public static final String SELECT_ALL =
                 "SELECT * FROM " + TABLE_NAME;
 
-        public static String SELECT_WITH_RESTID(long restId) {
+        public static String SELECT_WITH_REST_ID(long restId) {
             return "SELECT * FROM " + TABLE_NAME + " WHERE " +
                     COLUMN_REST + " = " + restId;
         }
     }
+
+
 
     public static class Restaurants implements BaseColumns {
         public static final String TABLE_NAME = "rests_table";
@@ -60,6 +62,8 @@ public final class DbContract {
         }
     }
 
+
+
     public static class EventFriend implements BaseColumns {
         public static final String TABLE_NAME = "event_friend";
         public static final String COLUMN_EVENT = "event";
@@ -78,6 +82,8 @@ public final class DbContract {
             return "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EVENT + " = " + id;
         }
     }
+
+
 
     public static class Friends implements BaseColumns {
         public static final String TABLE_NAME = "friends_table";

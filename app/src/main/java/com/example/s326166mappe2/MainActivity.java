@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -31,10 +32,15 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         dbHelper = new DbHelper(this);
         fragmentManager = getSupportFragmentManager();
         toolbar = (Toolbar)findViewById(R.id.toolbar);
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setSupportActionBar(toolbar);
         addListFragment(FRIENDS);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
