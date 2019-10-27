@@ -72,7 +72,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()) {
             do {
-                id = cursor.getLong(1);
+                id = cursor.getLong(0);
             }while (cursor.moveToNext());
         }
         cursor.close();

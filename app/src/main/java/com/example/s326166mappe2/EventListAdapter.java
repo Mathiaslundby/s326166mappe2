@@ -29,6 +29,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
     private static class ViewHolder {
         TextView tvRest;
         TextView tvTime;
+        TextView tvNumber;
         ListView lvFriends;
     }
 
@@ -44,6 +45,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
             convertView = inflater.inflate(R.layout.event_row_item, parent, false);
             viewHolder.tvRest = (TextView)convertView.findViewById(R.id.event_rest);
             viewHolder.tvTime = (TextView)convertView.findViewById(R.id.event_time);
+            viewHolder.tvNumber = (TextView)convertView.findViewById(R.id.event_rest_number);
             viewHolder.lvFriends = (ListView)convertView.findViewById(R.id.lv_event_friends);
 
             convertView.setTag(viewHolder);
@@ -60,9 +62,10 @@ public class EventListAdapter extends ArrayAdapter<Event> {
         for (long id : friendIds) {
             friends.add(dbHelper.getFriend(id).getName());
         }
-        String time = event.getTime();
-        viewHolder.tvRest.setText(rest.getName());
+        String restNameAndAddress = rest.getName() + ", " + rest.getAddress();
+        viewHolder.tvRest.setText(restNameAndAddress);
         viewHolder.tvTime.setText(event.getTime());
+        viewHolder.tvNumber.setText(rest.getPh_no());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, friends);
         viewHolder.lvFriends.setAdapter(adapter);
 

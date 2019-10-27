@@ -232,8 +232,6 @@ public class AddEventFragment extends Fragment {
         Event event = new Event(r.get_ID(), time);
         dbHelper.addEvent(event);
 
-        Log.d("LOGGING", "" + selectedFriends.size());
-
         long eventId = dbHelper.getEventId();
         for (long friendId : friendIds) {
             dbHelper.addEventFriend(eventId, friendId);
