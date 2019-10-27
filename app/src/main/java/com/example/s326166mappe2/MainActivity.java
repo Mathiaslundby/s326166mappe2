@@ -3,19 +3,16 @@ package com.example.s326166mappe2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements FragmentActionListener{
 
@@ -23,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     DbHelper dbHelper;
+    Fragment currentFragment;
+    MyPreferencesFragment prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setSupportActionBar(toolbar);
-        addListFragment(FRIENDS);
+        addEventListFragment();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +50,45 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     }
 
     @Override
+    public void onBackPressed() {
+        if(prefs != null) {
+            getFragmentManager().beginTransaction().remove(prefs).commit();
+            prefs = null;
+            addEventListFragment();
+        }
+        else {
+            Class c = currentFragment.getClass();
+            if (c == EventListFragment.class) {
+                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                homeIntent.addCategory(Intent.CATEGORY_HOME);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+            } else if (c == AddFriendFragment.class || c == EditFriendFragment.class) {
+                addListFragment(FragmentActionListener.FRIENDS);
+            } else if (c == AddRestFragment.class || c == EditRestFragment.class){
+                addListFragment(FragmentActionListener.RESTS);
+            }else {
+                addEventListFragment();
+            }
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         int list = 0;
-
+        if(prefs != null) {
+            getFragmentManager().beginTransaction().remove(prefs).commit();
+        }
         switch (id) {
+            case R.id.events:
+                addEventListFragment();
+                return super.onOptionsItemSelected(item);
+
+            case R.id.settings:
+                showSettings();
+                return super.onOptionsItemSelected(item);
+
             case R.id.friends:
                 list = FragmentActionListener.FRIENDS;
                 break;
@@ -63,22 +96,25 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
             case R.id.restaurants:
                 list = FragmentActionListener.RESTS;
                 break;
-
-            case R.id.events:
-                addEventListFragment();
-                return super.onOptionsItemSelected(item);
         }
         addListFragment(list);
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showSettings() {
+        fragmentManager.beginTransaction().remove(currentFragment).commit();
+        currentFragment = null;
+        prefs = new MyPreferencesFragment();
+        getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, prefs).commit();
     }
 
     private void addEventListFragment() {
         fragmentTransaction = fragmentManager.beginTransaction();
         EventListFragment eventListFragment = new EventListFragment();
         eventListFragment.setFragmentActionListener(this);
+        currentFragment = eventListFragment;
 
         fragmentTransaction.replace(R.id.fragmentContainer, eventListFragment);
-        fragmentTransaction.addToBackStack("lists");
         fragmentTransaction.commit();
     }
 
@@ -88,9 +124,9 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
 
         MyListFragment lfFragment = new MyListFragment(listType);
         lfFragment.setFragmentActionListener(this);
+        currentFragment = lfFragment;
 
         fragmentTransaction.replace(R.id.fragmentContainer, lfFragment);
-        fragmentTransaction.addToBackStack("lists");
         fragmentTransaction.commit();
     }
 
@@ -111,16 +147,16 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     private void addFriend() {
         fragmentTransaction = fragmentManager.beginTransaction();
         AddFriendFragment addFriendFragment = new AddFriendFragment();
+        currentFragment = addFriendFragment;
         fragmentTransaction.replace(R.id.fragmentContainer, addFriendFragment);
-        fragmentTransaction.addToBackStack("add");
         fragmentTransaction.commit();
     }
 
     private void addRestaurant() {
         fragmentTransaction = fragmentManager.beginTransaction();
         AddRestFragment addRestFragment = new AddRestFragment();
+        currentFragment = addRestFragment;
         fragmentTransaction.replace(R.id.fragmentContainer, addRestFragment);
-        fragmentTransaction.addToBackStack("add");
         fragmentTransaction.commit();
     }
 
@@ -153,8 +189,8 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     private void addEvent() {
         fragmentTransaction = fragmentManager.beginTransaction();
         AddEventFragment addEventFragment = new AddEventFragment();
+        currentFragment = addEventFragment;
         fragmentTransaction.replace(R.id.fragmentContainer, addEventFragment);
-        fragmentTransaction.addToBackStack("list");
         fragmentTransaction.commit();
     }
 
@@ -164,9 +200,9 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
 
         fragmentTransaction = fragmentManager.beginTransaction();
         EditRestFragment editRestFragment = new EditRestFragment(rest);
+        currentFragment = editRestFragment;
 
         fragmentTransaction.replace(R.id.fragmentContainer, editRestFragment);
-        fragmentTransaction.addToBackStack("edit");
         fragmentTransaction.commit();
     }
 
@@ -176,9 +212,9 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
 
         fragmentTransaction = fragmentManager.beginTransaction();
         EditFriendFragment editFriendFragment = new EditFriendFragment(friend);
+        currentFragment = editFriendFragment;
 
         fragmentTransaction.replace(R.id.fragmentContainer, editFriendFragment);
-        fragmentTransaction.addToBackStack("edit");
         fragmentTransaction.commit();
     }
 }
